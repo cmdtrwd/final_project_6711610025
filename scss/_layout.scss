@@ -1,0 +1,296 @@
+@import 'variables';
+@import 'mixins';
+
+// ============================================================
+// LAYOUT — Mobile First
+// Base styles = phone. Use @include md-up for desktop upgrades.
+// ============================================================
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @include md-up {
+    padding: 0 $spacing-lg;
+  }
+}
+
+// ----- HEADER -----
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(26, 0, 56, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(111, 0, 255, 0.3);
+  box-shadow: 0 2px 30px rgba(111, 0, 255, 0.2);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: $spacing-md;
+  padding-bottom: $spacing-md;
+}
+
+.header .logo {
+  font-family: $font-family-heading;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $color-accent;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(233, 179, 251, 0.5);
+  z-index: 1001;
+  transition: color 0.3s ease;
+}
+
+.header.menu-open .logo {
+  color: $text-dark;
+  text-shadow: none;
+}
+
+// ----- HAMBURGER BUTTON (mobile only by default) -----
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1001;
+  flex-shrink: 0;
+
+  span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: #e8d5ff;
+    border-radius: 2px;
+    transition: transform 0.35s ease, opacity 0.35s ease, background 0.3s ease;
+    transform-origin: center;
+  }
+
+  // Animate bars → X when open
+  &.open {
+    span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+      background: $text-dark;
+    }
+
+    span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+      background: $text-dark;
+    }
+  }
+
+  // Hidden on desktop
+  @include md-up {
+    display: none;
+  }
+}
+
+// ----- MOBILE NAV OVERLAY (hidden by default) -----
+#mainNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background: rgba(26, 0, 56, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding-top: 90px;
+  z-index: 999;
+
+  // Default: hidden
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  a {
+    font-family: $font-family-base;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: $text-dark;
+    padding: 1.2rem 2rem;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba($color-secondary, 0.12);
+    letter-spacing: 0.5px;
+    transition: color 0.25s, background 0.25s;
+
+    &:first-child {
+      border-top: 1px solid rgba($color-secondary, 0.12);
+    }
+
+    &:hover,
+    &.active {
+      color: $color-secondary;
+      background: rgba($color-secondary, 0.06);
+    }
+  }
+
+  // ----- DESKTOP NAV (≥768px) -----
+  @include md-up {
+    position: static;
+    flex-direction: row;
+    height: auto;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding-top: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    gap: $spacing-lg;
+    width: auto;
+    margin-left: auto; // Aligns the nav to the right
+
+
+    a {
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0;
+      width: auto;
+      border: none;
+      letter-spacing: 0.3px;
+      color: $color-highlight;
+
+      &:first-child {
+        border-top: none;
+      }
+
+      &:hover,
+      &.active {
+        background: transparent;
+        color: #ffffff;
+        text-shadow: 0 0 14px rgba(111, 0, 255, 0.8);
+      }
+    }
+  }
+}
+
+// ----- FOOTER -----
+.footer {
+  padding: 4rem 1rem 2rem;
+  margin-top: $spacing-xl;
+  border-top: 1px solid rgba($color-secondary, 0.3);
+  background-color: #130028;
+  color: $text-dark;
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+
+    @include md-up {
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .footer-brand {
+    .footer-logo {
+      font-family: $font-family-heading;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $color-secondary;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+    .footer-tagline {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: $text-muted;
+      max-width: 250px;
+    }
+  }
+
+  .footer-links {
+    h4.footer-heading {
+      font-family: $font-family-heading;
+      font-size: 1rem;
+      font-weight: 700;
+      color: $text-dark;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 0.8rem;
+
+        a, span {
+          font-size: 0.9rem;
+          color: $text-muted;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        a:hover {
+          color: $color-secondary;
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba($color-secondary, 0.1);
+    text-align: center;
+
+    p {
+      font-size: 0.85rem;
+      color: $text-muted;
+      margin-bottom: 0.5rem;
+
+      &.footer-credit {
+        font-weight: 500;
+        color: $color-secondary;
+        opacity: 0.8;
+      }
+    }
+
+    @include md-up {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

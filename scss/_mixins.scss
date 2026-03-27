@@ -1,0 +1,41 @@
+@import 'variables';
+
+// Media query mixins
+@mixin md-up {
+  @media (min-width: #{$breakpoint-md}) {
+    @content;
+  }
+}
+
+// @mixin lg-up {
+//   @media (min-width: #{$breakpoint-lg}) {
+//     @content;
+//   }
+// }
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin mystic-gradient {
+  background: linear-gradient(135deg, $color-primary, $color-secondary);
+}
+
+@mixin dark-gradient {
+  background: radial-gradient(circle at center, $bg-dark 0%, $bg-darker 100%);
+}
+
+@mixin hover-lift-glow {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $glow-soft;
+  }
+}

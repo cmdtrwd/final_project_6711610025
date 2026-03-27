@@ -1,0 +1,52 @@
+@import 'variables';
+@import 'mixins';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-family-base;
+  background-color: $color-bg;
+  background-image:
+    radial-gradient(ellipse at 15% 25%, rgba(111, 0, 255, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 75%, rgba(59, 2, 112, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 0%, rgba(233, 179, 251, 0.12) 0%, transparent 40%);
+  color: $text-dark;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  margin-bottom: $spacing-md;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  color: #fff1f1;
+}
+
+h4, h5, h6 {
+  font-family: $font-family-base;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #e9b3fb;
+}
+
+a {
+  color: $color-accent;
+  text-decoration: none;
+  transition: color 0.25s ease;
+  
+  &:hover {
+    color: #fff1f1;
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

@@ -1,0 +1,43 @@
+// =============================================
+// Dark Mystical Theme — User Palette
+// #fff1f1  →  Warm-white text / cream
+// #e9b3fb  →  Soft lavender glow / highlight
+// #6f00ff  →  Vivid electric purple / accent
+// #3b0270  →  Deep dark background / base
+// =============================================
+
+// Colors
+$color-primary: #6f00ff;    // Electric Purple (CTA / accent)
+$color-secondary: #6f00ff;  // Alias for accent (keeps existing refs working)
+$color-accent: #e9b3fb;     // Soft Lavender Glow
+$color-highlight: #e9b3fb;  // Light Glow (same as accent for consistency)
+$color-bg: #1a0038;         // Very deep dark, deeper than 3b0270 for richness
+
+// Dark layer backgrounds for cards/panels
+$color-surface: #2a0052;    // Panel surface (#3b0270 base)
+$color-surface-2: #3b0270;  // Slightly lighter panel
+
+// Text (always light for dark-bg contrast)
+$text-dark: #fff1f1;          // Warm white — main readable text
+$text-muted: rgba(233, 179, 251, 0.75); // Muted lavender for secondary text
+$text-light: #ffffff;
+
+// Fonts
+$font-family-base: 'DM Sans', 'Segoe UI', sans-serif;
+$font-family-heading: 'Cinzel', Georgia, serif;
+$font-family-accent: 'Playfair Display', serif;
+
+// Breakpoints
+$breakpoint-md: 768px;
+
+// Layout spacing
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 2rem;
+$spacing-xl: 4rem;
+
+// Shadows & Glows (tuned for dark bg)
+$glow-soft:   0 0 18px rgba(111, 0, 255, 0.45);
+$glow-strong: 0 0 35px rgba(233, 179, 251, 0.55);
+$shadow-deep: 0 10px 40px rgba(0, 0, 0, 0.85);
+$shadow-light: 0 4px 20px rgba(0, 0, 0, 0.4);
